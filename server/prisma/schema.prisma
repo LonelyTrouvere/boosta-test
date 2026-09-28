@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Question {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  text      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  options   AnswerOption[]
+  answers   QuizAnswer[]
+}
+
+model AnswerOption {
+  id         String   @id @default(uuid())
+  questionId String
+  text       String
+  weight     Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isActive   Boolean  @default(true)
+  deletedAt  DateTime?
+
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  answers    QuizAnswer[]
+}
+
+enum ResultType {
+  HIGH_ADHD_TRAITS
+  LOW_ADHD_TRAITS
+}
+
+model QuizAttempt {
+  id             String     @id @default(uuid())
+  visitorToken   String
+  totalScore     Float
+  scorePercent   Int
+  resultType     ResultType
+  reportSnapshot Json
+  completedAt    DateTime   @default(now())
+
+  answers        QuizAnswer[]
+}
+
+model QuizAnswer {
+  id                     String   @id @default(uuid())
+  attemptId              String
+  questionId             String
+  selectedOptionId       String
+  questionCodeSnapshot   String
+  questionTextSnapshot   String
+  optionTextSnapshot     String
+  weightSnapshot         Float
+
+  attempt  QuizAttempt  @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  question Question     @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  option   AnswerOption @relation(fields: [selectedOptionId], references: [id], onDelete: Restrict)
+}

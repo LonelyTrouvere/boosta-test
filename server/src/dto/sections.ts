@@ -1,0 +1,6 @@
+export enum Sections {
+  FAQ = 'FAQ',
+  UNDERSTANDING = 'UNDERSTANDING',
+  STRENGTHS = 'STRENGTHS',
+  REGULATION = 'REGULATION',
+}

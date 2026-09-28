@@ -1,0 +1,4 @@
+export enum ResultType {
+    HIGH_ADHD_TRAITS = "HIGH_ADHD_TRAITS",
+    LOW_ADHD_TRAITS = "LOW_ADHD_TRAITS",
+}

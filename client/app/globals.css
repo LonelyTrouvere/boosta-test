@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer components {
+  .text-p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .text-h3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
+
+@theme {
+  --color-blue-01: #1066b9;
+  --color-blue-02: #485664;
+  --color-blue-03: #e5f5ff;
+  --color-blue-04: #f3f7fa;
+  --color-dark-blue-02: #1c2d3f;
+  --color-dark-blue-03: #485664;
+  --color-light-blue-02: #f1f4f7;
+  --color-cyan: #18334d;
+  --color-bar: #7BA3CD;
+  --color-default-black: #04182c;
+  --color-progress-bar: #f3f7fa;
+  --shadow-option-active:
+    0 3px 6px 0 rgb(131 147 165 / 0.1), 0 23px 14px 0 rgb(131 147 165 / 0.05);
+
+  --animate-slide-next: slideNext 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-prev: slidePrev 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes slideNext {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slidePrev {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
